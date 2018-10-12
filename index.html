@@ -58,7 +58,8 @@
                                         &ThickSpace;</i></a>
                                 <a href="https://www.linkedin.com/in/yeganeh-salami-b30367b5/"><i class="fa fa-linkedin">&ThickSpace;
                                         &ThickSpace;</i></a>
-                                <a href="https://twitter.com/y_salami17"><i class="fa fa-twitter">&ThickSpace; &ThickSpace;</i></a>
+                                <a href="https://twitter.com/y_salami17"><i class="fa fa-twitter">&ThickSpace;
+                                        &ThickSpace;</i></a>
                             </p>
                         </div>
                         <div class="col-12 col-md-7">
@@ -257,6 +258,19 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).keydown(function (event) {
+            if (event.keyCode == 123) { // Prevent F12
+                return false;
+            } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) { // Prevent Ctrl+Shift+I        
+                return false;
+            }
+        });
+
+        $(document).on("contextmenu", function (e) {
+            e.preventDefault();
+        });
+    </script>
 </body>
 
 </html>
