@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.79.0">
+    <title>Sort Algorithms</title>
+
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <script src="../assets/js/jquery.min.js"></script>
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+        
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+
+
+    <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="../assets/css/sorting-algorithms.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container">
+        <header class="blog-header py-3">
+            <div class="row flex-nowrap justify-content-between align-items-center justify-content-md-center">
+                <div class="col-4 text-center ">
+                    <a class="blog-header-logo text-dark" href="#">Sort Algorithms</a>
+                </div>
+            </div>
+        </header>
+
+        <div class="nav-scroller py-1 mb-2">
+            <nav id="navbar-example2" class="nav d-flex justify-content-between">
+                <a class="p-2 link-secondary" href="#bubbleSort">Bubble Sort</a>
+                <a class="p-2 link-secondary" href="#selectionSort">Selection Sort</a>
+                <a class="p-2 link-secondary" href="#insertionSort">Insertion Sort</a>
+                <a class="p-2 link-secondary" href="#mergeSort">Merge Sort</a>
+                <a class="p-2 link-secondary" href="#quickSort">Quick Sort</a>
+                <a class="p-2 link-secondary" href="#countingSort">Counting Sort</a>
+                <a class="p-2 link-secondary" href="#bucketSort">Bucket Sort</a>
+                <a class="p-2 link-secondary" href="#about">About</a>
+            </nav>
+        </div>
+    </div>
+
+    <main class="container">
+        <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
+            <div class="col-md-6 px-0">
+                <h1 class="display-4 font-italic">here is a place to understand sort algorithms</h1>
+            </div>
+        </div>
+
+        <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" tabindex="0">
+            <div id="bubbleSort">
+                <h3 class="pb-4 mb-4 font-italic border-bottom">
+                    Bubble Sort
+
+                </h3>
+                <div class="row pb-5">
+                    <div class="col-12 col-lg-8" style="height: 500px; overflow-x: hidden; overflow-y: auto;">
+                        <div class="card">
+                            <h5 class="card-header">
+                                <i>Description</i>
+                            </h5>
+                            <div class="card-body">
+                                <p class="card-text">
+                                    <ul>
+                                        <li>
+                                            Bubble sorting starts with 2 first items. its compares items at index 0 and 1. for example in <b>[<span class="sortedList">7, 1, 4, 8, 9, 2</span>]</b> it compare 7 and 1.
+                                        </li>
+                                        <li>
+                                            1 is smaller than 7 so they have to swap. then we have <b>[<span class="sortedList-1">1, 7, 4, 8, 9, 2</span>]</b>. that 1 and 7, 4, 8, 9, 2 that is a new unsorted list.
+                                        </li>
+                                        <li>
+                                            so again we compare 2 first items in our unsorted list that are 7 and 4. so 4 is smaller than 7, it has to swap with 7. then we have <b>[<span class="sortedList-2">1, 4, 7, 8, 9, 2</span>]</b>. that 1, 4 is
+                                            and 7, 8, 9, 2 that is a new unsorted list.
+                                        </li>
+                                        <li>
+                                            then we compare 7 and 8, 7 is in right place. <b>[<span class="sortedList-3">1, 4, 7, 8, 9, 2</span>]</b>. then 8 and 9. also 8 is in a right place. <b>[<span class="sortedList-4">1, 4, 7, 8, 9, 2</span>]</b>.
+                                            we compare 9 and 2. they have to swap <b>[<span class="sortedList-0">1, 4, 7, 8, 2, 9</span>]</b> so we get in the end of the array. we loop over again.
+                                        </li>
+                                        <li>in every step we have to compare first two items in our new unsorted list. until the end of the array length. and start from array for sorting again. at the end we have <b>[<span class="sortedList-6">1, 2, 4, 7, 8, 9</span>]</b></li>
+                                        <li>
+                                            the name of bubble sort its because in every loop from first item to the end item of array, it bubbles up the biggest item in last index of array. in the example above in first loop we bubble up 9 in end of the array. in second loop we will bubble up
+                                            8 in the end of array before 9. and so on...
+                                        </li>
+                                    </ul>
+                                </p>
+                            </div>
+
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Big O: O(n2)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-4" style="height: 500px; overflow-x: hidden; overflow-y: auto;">
+                        <div class="card">
+                            <div class="card-header">
+                                Implimentation
+                            </div>
+                            <div class="card-body">
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" id="inputBubbleSort" value="1, 8, 6, 3, 2" placeholder="1, 8, 6, 3, 2">
+                                </div>
+                                <div class="col-auto">
+                                    <button onclick="btnBubbleSort()" type="button" class="btn btn-outline-dark mb-3">Try Bubble sort</button>
+                                </div>
+                                <div>
+                                    <p id="resultBubbleSort"></p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="selectionSort">
+                <h3 class="pb-4 mb-4 font-italic border-bottom">
+                    Selection Sort
+
+                </h3>
+                <div class="row pb-5">
+                    <div class="col-12 col-lg-8" style="height: 500px; overflow-x: hidden; overflow-y: auto;">
+                        <div class="card">
+                            <h5 class="card-header">
+                                <i>Description</i>
+                            </h5>
+                            <div class="card-body">
+                                <p class="card-text">
+                                    <ul>
+                                        <li>
+                                            We find and select minimum value and move it to the right place.
+                                        </li>
+                                        <li>
+                                            it means that in array <b>[<span class="sortedList-0">8, 2, 4, 1, 3</span>]</b> the minimum value is 1, and we should move it to index 0. so we swap with 8.
+                                        </li>
+                                        <li>
+                                            now we have <b>[<span class="sortedList-1">1, 2, 4, 8, 3</span>]</b>. that 1 is sorted list and 2, 4, 8, 3 is unsorted list. so we do first step again on our new unsorted list.
+                                        </li>
+                                        <li>
+                                            the minimum value is 2. its lower than other items in our new unsorted list so it is in right place.<br/> so we have 1,2 a sorted list and 4, 8, 3 new unsorted list. <b>[<span class="sortedList-2">1, 2, 4, 8, 3</span>]</b>
+                                        </li>
+                                        <li>
+                                            3 is smaller item in our new unsorted list. it has to swap with first item in unsorted list that is 4. so we have 1, 2, 3 a sorted list again and 8, 4 a new unsorted list. <b>[<span class="sortedList-3">1, 2, 3, 8, 4</span>]</b>
+                                        </li>
+                                        <li>
+                                            just like steps above we get a sorted list. <b>[<span class="sortedList-5">1, 2, 3, 4, 8</span>]</b>
+                                        </li>
+                                    </ul>
+                                </p>
+                            </div>
+
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Big O: O(n2)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-4" style="height: 500px; overflow-x: hidden; overflow-y: auto;">
+                        <div class="card">
+                            <div class="card-header">
+                                Implimentation
+                            </div>
+                            <div class="card-body">
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" id="inputSelectionSort" value="7, 1, 4, 8, 9, 2" placeholder="7, 1, 4, 8, 9, 2">
+                                </div>
+                                <div class="col-auto">
+                                    <button onclick="btnSelectionSort()" type="button" class="btn btn-outline-dark mb-3">Try Selection Sort</button>
+                                </div>
+                                <div>
+                                    <p id="resultSelectionSort"></p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div id="insertionSort">
+                <h3 class="pb-4 mb-4 font-italic border-bottom">
+                    Insertion Sort
+
+                </h3>
+                <p>under constructor</p>
+            </div>
+            <div id="mergeSort">
+                <h3 class="pb-4 mb-4 font-italic border-bottom">
+                    Merge Sort
+
+                </h3>
+                <p>under constructor</p>
+            </div>
+            <div id="quickSort">
+                <h3 class="pb-4 mb-4 font-italic border-bottom">
+                    Quick Sort
+
+                </h3>
+                <p>under constructor</p>
+            </div>
+            <div id="countingSort">
+                <h3 class="pb-4 mb-4 font-italic border-bottom">
+                    Counting Sort
+
+                </h3>
+                <p>under constructor</p>
+            </div>
+            <div id="bucketSort">
+                <h3 class="pb-4 mb-4 font-italic border-bottom">
+                    Bucket Sort
+
+                </h3>
+                <p>under constructor</p>
+            </div>
+            <div id="about">
+                <h3 class="pb-4 mb-4 font-italic border-bottom">
+                    About
+                </h3>
+                <p>under constructor</p>
+            </div>
+        </div>
+        <!-- /.row -->
+
+    </main>
+    <!-- /.container -->
+
+    <footer class="blog-footer">
+        <p>created by <a href="https://yeganesalami.github.io/">Yeganeh Salami</a></p>
+        <p>
+            <a href="#">Back to top</a>
+        </p>
+    </footer>
+
+
+</body>
+<script>
+    $(document).ready(function() {
+        var results = $('*[class^="sortedList"]');
+        for (i = 0; i < results.length; i++) {
+            value = results[i].innerText.split(",");
+
+            var valueClasses = results[i].className.split("-");
+            var sortedIndex = valueClasses[1];
+
+            $(`.${results[i].className}`).empty();
+
+            for (j = 0; j < value.length; j++) {
+                if (j < sortedIndex) {
+                    $(`.${results[i].className}`).append(`<span style="color: green">${value[j]}</span>`);
+                    if (j + 1 !== value.length)
+                        $(`.${results[i].className}`).append(", ");
+                } else {
+                    $(`.${results[i].className}`).append(`<span style="color: red">${value[j]}</span>`);
+                    if (j + 1 !== value.length)
+                        $(`.${results[i].className}`).append(", ");
+                }
+
+            }
+        }
+    });
+
+    function btnBubbleSort() {
+        var items = $('#inputBubbleSort').val();
+        var result = $('#resultBubbleSort');
+        var counter = 1;
+        result.empty();
+
+        var arr = [];
+        arr = items.split(", ");
+
+        for (i = 0; i < arr.length; i++) {
+            for (j = 0; j < arr.length; j++) {
+                if (arr[j + 1] < arr[j]) {
+                    result.append(`${counter}) swap <b>${arr[j + 1]}</b> and <b>${arr[j]}</b> <br/>`);
+                    var swap = arr[j + 1];
+                    arr[j + 1] = arr[j];
+                    arr[j] = swap;
+                    result.append(`<b>[${arr}]</b> <br/><br/>`).fadeIn()
+                } else {
+                    result.append(`${counter})  <b>${arr[j]}</b> is in right place. <br/><br/>`);
+                }
+                counter++;
+            }
+            if (i + 1 != arr.length)
+                result.append("<br/> start over again </br></br></br>");
+            counter = 1;
+        }
+    }
+
+    function btnSelectionSort() {
+        var items = $('#inputSelectionSort').val();
+        var result = $('#resultSelectionSort');
+        var counter = 1;
+        result.empty();
+
+        var arr = [];
+        arr = items.split(", ");
+
+        // TODO: review for 7, 1, 4, 8, 9, 2, 405, 14, 70
+        for (j = 0; j < arr.length; j++) {
+            var smallest = arr[j];
+            var smallestIndex = j;
+            for (i = 1; i < arr.length; i++) {
+                if (smallest > arr[i]) {
+                    smallest = arr[i];
+                    smallestIndex = i;
+                }
+            }
+            result.append(`${counter}) <b>${smallest}</b> is the smallest item.</br> so we swap <b>${smallest}</b> with <b>${arr[j]}</b><br/>`);
+            var swap = arr[j];
+            arr[j] = smallest;
+            arr[smallestIndex] = swap;
+            result.append(`the result will be <b>[${arr}]</b></br></br>`);
+        }
+
+
+    }
+</script>
+
+</html>
