@@ -11,6 +11,8 @@
 
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
     <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/sorting-algorithms.js"></script>
+
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -105,7 +107,7 @@
                             </div>
 
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Big O: O(n2)</li>
+                                <li class="list-group-item">Big O: O(n^2)</li>
                             </ul>
                         </div>
                     </div>
@@ -167,7 +169,7 @@
                             </div>
 
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Big O: O(n2)</li>
+                                <li class="list-group-item">Big O: O(n^2)</li>
                             </ul>
                         </div>
                     </div>
@@ -228,7 +230,7 @@
                             </div>
 
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Big O: O(n)</li>
+                                <li class="list-group-item">Big O: O(n^2)</li>
                             </ul>
                         </div>
                     </div>
@@ -255,11 +257,71 @@
                 </div>
             </div>
             <div id="mergeSort">
-                <h3 class="mb-4 font-italic border-bottom">
+                <h3 class="font-italic border-bottom">
                     Merge Sort
-
                 </h3>
-                <p>under constructor</p>
+                <div class="row ">
+                    <div class="col-12 col-lg-8">
+                        <div class="card">
+                            <h5 class="card-header">
+                                <i>Description</i>
+                            </h5>
+                            <div class="card-body">
+                                <p class="card-text">
+                                    <ul>
+                                        <li>
+                                            The concept of Merge sort is that we break the array and merge again.
+                                            so lets assume that we have an array like <b>[<span class="sortedList-0000">8, 2, 4, 1, 3</span>]</b> 
+                                            we break this array into 2 parts from middle of the array.
+                                        </li>
+                                        <li>
+                                            so we have <b>[<span class="sortedList-00000">8, 2</span>]</b> in the left array and <b>[<span class="sortedList-000000">4, 1, 3</span>]</b>
+                                            in the right array.
+                                        </li>
+                                        <li>
+                                            then we break right array into two parts. <b>[<span class="sortedList-0000001">8</span>]</b> as the left array.
+                                            and <b>[<span class="sortedList-000001">2</span>]</b> right array.
+                                        </li>
+                                        <li>
+                                            so we have two arrays that have 1 item and by default its sorted. then we compare these 2 arrays and sort them.
+                                            so we have <b>[<span class="sortedList-00002">2, 8</span>]</b>
+                                        </li>
+                                        <li>    
+                                            <b>[<span class="sortedList-000000">4, 1, 3</span>]</b> we apply above parts for this array too.
+                                        </li>
+                                        <li>
+                                            and at the end we have <b>[<span class="sortedList-00005">1, 2, 3, 4, 8</span>]</b>
+                                        </li>
+                                    </ul>
+                                </p>
+                            </div>
+
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Big O: O(nlogn)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-4" style="height: 412px; overflow-x: hidden; overflow-y: auto;">
+                        <div class="card">
+                            <div class="card-header">
+                                Implimentation
+                            </div>
+                            <div class="card-body">
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" id="inputMergeSort" value="1, 8, 6, 3, 2" placeholder="1, 8, 6, 3, 2">
+                                </div>
+                                <div class="col-auto">
+                                    <button onclick="btnMergeSort()" type="button" class="btn btn-outline-dark mb-3">Try Merge Sort</button>
+                                </div>
+                                <div>
+                                    <p id="resultMergeSort"></p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
             </div>
             <div id="quickSort">
                 <h3 class="mb-4 font-italic border-bottom">
@@ -303,119 +365,5 @@
 
 
 </body>
-<script>
-    $(document).ready(function() {
-        var results = $('*[class^="sortedList"]');
-        for (i = 0; i < results.length; i++) {
-            value = results[i].innerText.split(",");
-
-            var valueClasses = results[i].className.split("-");
-            var sortedIndex = valueClasses[1];
-
-
-            $(`.${results[i].className}`).empty();
-
-            for (j = 0; j < value.length; j++) {
-                if (j < sortedIndex) {
-                    $(`.${results[i].className}`).append(`<span style="color: green">${value[j]}</span>`);
-                    if (j + 1 !== value.length)
-                        $(`.${results[i].className}`).append(", ");
-                } else {
-                    $(`.${results[i].className}`).append(`<span style="color: red">${value[j]}</span>`);
-                    if (j + 1 !== value.length)
-                        $(`.${results[i].className}`).append(", ");
-                }
-
-            }
-        }
-    });
-
-    function btnBubbleSort() {
-        var items = $('#inputBubbleSort').val();
-        var result = $('#resultBubbleSort');
-        var counter = 1;
-        result.empty();
-
-        var arr = [];
-        arr = items.split(", ").map(x => +x);
-
-        for (i = 0; i < arr.length; i++) {
-            for (j = 0; j < arr.length; j++) {
-                if (arr[j + 1] < arr[j]) {
-                    result.append(`${counter}) swap <b>${arr[j + 1]}</b> and <b>${arr[j]}</b> <br/>`);
-                    var swap = arr[j + 1];
-                    arr[j + 1] = arr[j];
-                    arr[j] = swap;
-                    result.append(`<b>[${arr}]</b> <br/><br/>`);
-                } else {
-                    result.append(`${counter})  <b>${arr[j]}</b> is in right place. <br/><br/>`);
-                }
-                counter++;
-            }
-            if (i + 1 != arr.length)
-                result.append("<br/> start over again </br></br></br>");
-            counter = 1;
-        }
-    }
-
-    function btnSelectionSort() {
-        var items = $('#inputSelectionSort').val();
-        var result = $('#resultSelectionSort');
-        var counter = 1;
-        result.empty();
-
-        var arr = [];
-        arr = items.split(", ").map(x => +x);
-
-        for (j = 0; j < arr.length; j++) {
-            var smallest = arr[j];
-            var smallestIndex = j;
-            for (i = j + 1; i < arr.length; i++) {
-                if (smallest > arr[i]) {
-                    smallest = arr[i];
-                    smallestIndex = i;
-                }
-            }
-            result.append(`${counter}) <b>${smallest}</b> is the smallest item.</br> so we swap <b>${smallest}</b> with <b>${arr[j]}</b><br/>`);
-            var swap = arr[j];
-            arr[j] = smallest;
-            arr[smallestIndex] = swap;
-            result.append(`the result will be <b>[${arr}]</b></br></br>`);
-        }
-
-
-    }
-
-    function btnInsertionSort() {
-        var items = $('#inputInsertionSort').val();
-        var result = $('#resultInsertionSort');
-        var counter = 1;
-        result.empty();
-
-        var arr = [];
-        arr = items.split(", ").map(x => +x);
-        debugger;
-
-        result.append(`${counter}) we pick ${arr[0]}. it's already sorted</br></br>`);
-
-        for (j = 1; j < arr.length; j++) {
-            counter++;
-            var selectedNumber = arr[j];
-            result.append(`${counter}) we pick ${selectedNumber}. </br>`);
-            i = j - 1;
-            while (i >= 0 && arr[i] > selectedNumber) {
-                result.append(`${selectedNumber} is smaller than ${arr[i]}. so we shift ${arr[i]} into right.</br>`);
-                arr[i + 1] = arr[i];
-                i--;
-            }
-
-            result.append(`place for number ${selectedNumber} is at index ${i+1}.</br>`);
-            arr[i + 1] = selectedNumber;
-            result.append(`<b>[${arr}]</b><br/><br/>`);
-        }
-
-
-    }
-</script>
 
 </html>
