@@ -1,0 +1,15 @@
+ var data = from p in _db.parent
+                          where (string.IsNullOrEmpty(name) || p.Name == name) && (string.IsNullOrEmpty(family) || p.Family == family)
+                           select new
+                           {
+                               Name = p.Name,
+                               Family = p.Family,
+                               Amount = p.Amount,
+                               sub = from pa in _db.parent
+                                     join c in _db.child
+                                     on new { Name = pa.Name, Family = pa.Family } 
+                                     equals new { Name = c.Name, Family = c.Family }
+                                     //where (string.IsNullOrEmpty(name) || pa.Name == name) && (string.IsNullOrEmpty(family) || pa.Family == family)
+                                     where ( pa.Name == p.Name && pa.Name == c.Name) && ( pa.Family == p.Family && pa.Family == c.Family)
+                                     select new { c.Name, c.info, c.Family}
+                           };
